@@ -1,0 +1,20 @@
+# Read Me
+
+### Install - Docker, Kubectl, scaffold, ingress-nginx
+
+1. Docker build
+docker build -t jonathan26/auth . 
+
+2. Run Skaffold
+skaffold dev
+
+3. Local hosting
+nano /etc/hosts
+
+Add the below
+127.0.0.1 ticketing.dev
+Save the file.
+
+=====================
+
+How to make a new micro service.
