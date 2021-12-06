@@ -17,4 +17,15 @@ Save the file.
 
 =====================
 
-How to make a new micro service.
+# Troubleshoot.
+
+1. On git commit, the below error:
+error: cannot run gpg: No such file or directory
+
+error: could not run gpg.
+
+fatal: failed to write commit object (128)
+
+Fix:
+$ git config --global commit.gpgsign false
+
