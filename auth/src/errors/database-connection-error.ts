@@ -4,7 +4,7 @@ export class DatabaseConnectionError extends CustomError {
     reason = "Error connecting to database";
     statusCode = 500;
     constructor() {
-        super('Invalid Request Parameter');  // msg for logging purpose
+        super('Error connecting to db');  // msg for logging purpose
 
         // Only because we are extending a built in class
         Object.setPrototypeOf(this, DatabaseConnectionError.prototype)
