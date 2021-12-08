@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
@@ -20,13 +20,13 @@ router.post('/api/users/signup',[
             .withMessage('Password must be between 4 and 20 characters')
     ],
     validateRequest,
-    async (req: Request, res: Response) => {
-
+    async (req: Request, res: Response, next: NextFunction) => {
+        try{
         const { email, password } = req.body;
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            throw new BadRequestError('Email in use BadRequest!');
+            throw new BadRequestError('Email in use!');
         }
 
         console.log('email check done')
@@ -49,6 +49,9 @@ router.post('/api/users/signup',[
         };
 
         res.status(201).send(user);
+        } catch(err) {
+            next(err);
+        }
     }
 );
 
