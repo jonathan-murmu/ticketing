@@ -9,9 +9,7 @@ export const errorHandler = (
     res: Response,
     next: NextFunction
 ) => {
-    console.log('Mid Err', err);
     if (err instanceof CustomError) {   
-        console.log('Error Handler Mid!');
         return res.status(err.statusCode).send({ errors: err.serializeErrors() })
     }
 

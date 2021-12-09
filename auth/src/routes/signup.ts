@@ -29,11 +29,8 @@ router.post('/api/users/signup',[
             throw new BadRequestError('Email in use!');
         }
 
-        console.log('email check done')
-
         const user = User.build({ email, password });
         await user.save();
-        console.log('user saved');
 
         // Generate json web token
         const userJwt = jwt.sign({

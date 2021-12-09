@@ -23,7 +23,6 @@ router.post('/api/users/signin',[
 validateRequest,
 async (req: Request, res: Response, next: NextFunction) => {
     try {
-    console.log('in sign in route')
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
