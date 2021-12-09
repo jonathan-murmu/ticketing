@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
@@ -21,8 +21,8 @@ router.post('/api/users/signin',[
         .withMessage('You must supply a password')
 ], 
 validateRequest,
-async (req: Request, res: Response) => {
-    console.log('in sign in route')
+async (req: Request, res: Response, next: NextFunction) => {
+    try {
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -53,6 +53,9 @@ async (req: Request, res: Response) => {
     };
 
     res.status(200).send(existingUser)
+    } catch(err){
+        next(err)
+    }
 
 });
 
