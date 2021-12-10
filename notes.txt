@@ -3,7 +3,10 @@
 ### Install - Docker, Kubectl, scaffold, ingress-nginx
 
 1. Docker build
-docker build -t jonathan26/auth . 
+docker build -t jonathan92/auth . 
+
+2. Docker push to docker hub 
+docker push jonathan92/auth
 
 2. Run Skaffold
 skaffold dev

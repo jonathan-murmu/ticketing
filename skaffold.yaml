@@ -8,11 +8,19 @@ build:
   local:
     push: false
   artifacts:
-    - image: jonathan26/auth
+    - image: jonathan92/auth
       context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: "src/**/*.ts"
+            dest: .
+    - image: jonathan92/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
             dest: .
