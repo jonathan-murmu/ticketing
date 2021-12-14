@@ -30,6 +30,17 @@ for listing serices from another namspace.
 $ kubectl get services -n ingress-nginx
 
 =====================
+update the common library
+$ npm run build
+$ npm publish
+or $ npm run pub
+
+then go to the required microservice;
+$ npm run update @ticketsjm92/common; 
+====================
+SSH into a pod
+$ kubectl exec -it auth-depl-6f77f95498-8gq2x sh
+==================
 
 # Troubleshoot.
 
