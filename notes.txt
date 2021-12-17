@@ -41,6 +41,9 @@ $ npm run update @ticketsjm92/common;
 SSH into a pod
 $ kubectl exec -it auth-depl-6f77f95498-8gq2x sh
 ==================
+Port forwarding for Nats test server.
+kubectl port-forward nats-depl-58c86fb7b8-p65rn 4222:4222
+==============
 
 # Troubleshoot.
 
