@@ -19,7 +19,6 @@ const Signup = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        console.log(email, password);
 
         await doRequest();
     }

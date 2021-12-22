@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 
+
 const createTicket = async () => {
     await request(app)
         .post('/api/tickets')

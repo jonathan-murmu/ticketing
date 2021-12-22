@@ -14,6 +14,8 @@ import jwt from 'jsonwebtoken';
 declare global {
         function signin(): string[]
 }
+jest.setTimeout(30000);
+jest.mock('../nats-wrapper');
 
 let mongo: any;
 // hook that run before any test
@@ -30,6 +32,8 @@ beforeAll(async () => {
 
 // hook that run before each test
 beforeEach(async () => {
+    jest.clearAllMocks();
+    jest.setTimeout(30000);
     const collections = await mongoose.connection.db.collections();
 
     for(let collection of collections){

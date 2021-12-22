@@ -14,6 +14,9 @@ skaffold dev
 3. Local hosting
 nano /etc/hosts
 
+4. Clean all stopped and unsed container, network, images, cache.
+docker system prune -a
+
 Add the below
 127.0.0.1 ticketing.dev
 Save the file.

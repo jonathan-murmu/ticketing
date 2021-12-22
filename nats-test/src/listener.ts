@@ -1,6 +1,7 @@
-import nats, { Message } from 'node-nats-streaming';
+import nats from 'node-nats-streaming';
 
 import { randomBytes } from 'crypto';
+import { TicketCreatedListener } from './events/ticket-created-listener';
 
 console.clear();
 
@@ -16,27 +17,8 @@ stan.on('connect', () => {
         process.exit();
     })
 
-    const options = stan
-        .subscriptionOptions()
-        .setManualAckMode(true)
-        .setDeliverAllAvailable()  // all the events emited in the past
-        .setDurableName('acconting-service');  // never miss out and unproccessed/delivered event.
-    const subscription = stan.subscribe(
-        'ticket:created', 
-        'queue-group-name',
-        options);
+    new TicketCreatedListener(stan).listen();
 
-    subscription.on('message', (msg: Message) => {
-        console.log('Messag received');
-
-        const data = msg.getData();
-
-        if (typeof data === 'string') {
-            console.log(`Received even #${msg.getSequence()}, with data: ${data}`);
-        }
-
-        msg.ack();
-    })
 });
 
 // graceful shutdown
