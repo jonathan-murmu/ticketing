@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 import { app } from './app';
 import { natsWrapper } from './nats-wrapper';
+import { OrderCreatedListener } from './events/listeners/order-created-listener';
+import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
+
 
 const start = async () => {
     console.log('process.env.JWT_KEY start', process.env.JWT_KEY)
@@ -36,6 +39,9 @@ const start = async () => {
         // graceful shutdown
         process.on('SIGINT', () => natsWrapper.client.close()); // INTERRUPT
         process.on('SIGTERM', () => natsWrapper.client.close())  // TERMINATE
+
+        new OrderCreatedListener(natsWrapper.client).listen();
+        new OrderCancelledListener(natsWrapper.client).listen();
 
 
         await mongoose.connect(process.env.MONGO_URI);

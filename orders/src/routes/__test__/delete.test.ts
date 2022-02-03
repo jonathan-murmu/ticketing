@@ -1,4 +1,5 @@
 import { ResultWithContext } from 'express-validator/src/chain';
+import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 import { Order, OrderStatus } from '../../models/order';
@@ -9,7 +10,8 @@ it('marks an orde as cancelled', async() => {
     // create a ticket with ticket model
     const ticket = Ticket.build({
         title: 'concert',
-        price: 20
+        price: 20,
+        id: new mongoose.Types.ObjectId().toHexString()
     });
     await ticket.save();
 
@@ -38,7 +40,8 @@ it('emits a order cancelled event', async() => {
     // create a ticket with ticket model
     const ticket = Ticket.build({
         title: 'concert',
-        price: 20
+        price: 20,
+        id: new mongoose.Types.ObjectId().toHexString()
     });
     await ticket.save();
 

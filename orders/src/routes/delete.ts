@@ -23,12 +23,13 @@ router.delete('/api/orders/:orderId', requireAuth, async (req: Request, res: Res
     // publish an evnet for cancel
     new OrderCancelledPublisher(natsWrapper.client).publish({
         id: order.id,
+        version: order.version,
         ticket: {
             id: order.ticket.id,
         }
     })
 
-    res.send(order);
+    res.status(204).send(order);
 });
 
 export { router as deleteOrderRouter };
