@@ -47,7 +47,12 @@ $ kubectl exec -it auth-depl-6f77f95498-8gq2x sh
 Port forwarding for Nats test server.
 kubectl port-forward nats-depl-58c86fb7b8-p65rn 4222:4222
 ==============
+KUBE CREATE A SECRET
+kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=
 
+View secret
+kubectl get secrets
+=========
 # Troubleshoot.
 
 1. On git commit, the below error:
