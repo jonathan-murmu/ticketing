@@ -49,6 +49,7 @@ router.post('/api/payments',
         // });
 
         // console.log('stripe charge', stripe_charge)
+        console.log('payment done')
         res.send({ success: true });
 
 
