@@ -25,6 +25,9 @@ Opaque script in kube
 
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
 ==============
+Delete/restart all pods in the default namspace
+kubectl -n default delete pod --all
+==============
 
 For testing
 npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server
